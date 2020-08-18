@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+<aop:config>
+<aop:aspect id="loggingAspect" ref="loggingAspect">
+
+<aop:pointcut expression="execution(* com.dxc.aop.service.*.add*(..))" id="beforepointcut"/>
+<aop:before method="beforeAdvice" pointcut-ref="beforepointcut"/>
+
+<aop:pointcut expression="execution(* com.dxc.aop.service.*.getProduct())" id="afterpointcut"/>
+<aop:after method="afterAdvice" pointcut-ref="afterpointcut"/> 
+
+<aop:pointcut expression="execution(* com.dxc.aop.service.*.add*(..))" id="afterreturningpointcut"/>
+<aop:after-returning method="afterReturningAdvice" pointcut-ref="afterreturningpointcut"/>
+
+<aop:pointcut expression="execution(* com.dxc.aop.service.*.get*(..))" id="afterthrowingpointcut"/>
+<aop:after-throwing method="afterThrowingAdvice" pointcut-ref="afterthrowingpointcut" throwing = "ex"/>
+
+<aop:pointcut expression="execution(* com.dxc.aop.service.*.delay*(..))" id="aroundpointcut"/>
+<aop:around method="logAroundAdvice" pointcut-ref="aroundpointcut"/>
+</aop:aspect>
+</aop:config>
+<bean id="loggingAspect" class="com.dxc.aop.aspect.LoggingAspect" /> 
+<bean id="productService"   class="com.dxc.aop.service.ProductService" /> 
+</beans>

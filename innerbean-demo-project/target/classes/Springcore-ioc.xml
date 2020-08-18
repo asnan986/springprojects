@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+	<bean id="car" class="com.dxc.model.Car" autowire="byType">
+
+		<property name="car_brand" value="Hyundai" />
+		<property name="car_model" value="i20" />
+		<property name="car_cc" value="1200" />
+		<property name="car_price" value="800000" />
+		<!-- <property name="driver"  ref="address">
+			 <bean class="com.dxc.model.Driver"> <property name="driverName" value="Asnan"></property> 
+				<property name="driverId" value= "160"></property> <property name="driverSpeed" 
+				value="100"></property> </bean> 
+		</property>  -->
+		
+	</bean>
+	<bean id="driver1" class="com.dxc.model.Driver"> <property name="driverName" value="Asnan"></property> 
+				<property name="driverId" value= "160"></property> <property name="driverSpeed" 
+				value="100"></property> </bean>
+	
+
+
+</beans>
